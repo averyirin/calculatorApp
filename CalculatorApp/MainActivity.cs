@@ -7,6 +7,11 @@ namespace CalculatorApp {
     [Activity(Label = "CalculatorApp", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity {
 
+
+        decimal firstNumber = 0;
+        decimal secondNumber = 0;
+        decimal resultNumber = 0;
+
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
@@ -44,7 +49,6 @@ namespace CalculatorApp {
 
             //display text
             TextView textDisplay = (TextView)FindViewById(Resource.Id.textDisplay);
-
 
 
 
@@ -98,10 +102,6 @@ namespace CalculatorApp {
                 addToDisplay("0", textDisplay);
             };
 
-            /* Button Clear */
-            btnClear.Click += delegate {
-                clearDisplay(textDisplay);
-            };
 
 
             /* 
@@ -122,12 +122,36 @@ namespace CalculatorApp {
                 }
             };
 
+            /* Button Clear */
+            btnClear.Click += delegate {
+                clearDisplay(textDisplay);
+            };
+
+
+            /* Button Decimal */
+            btnDecimal.Click += delegate {
+                addToDisplay(".",textDisplay);
+            };
+
+            /* Button Plus/Minus */
+            btnDecimal.Click += delegate {
+                toggleNegative(textDisplay);
+            };
         }
 
         private void clearDisplay(TextView display) {
             display.Text = "0";
         }
 
+        private void toggleNegative(TextView display) {
+            //toggle positive and negative
+            if (display.Text.Contains("-") == false) {
+                display.Text = "-" + display.Text;
+            }
+            else {
+                display.Text = display.Text.Substring(1, display.Text.Length);
+            }
+        }
         /*  
             0 > 5
             5 > 50
@@ -135,14 +159,46 @@ namespace CalculatorApp {
             1 > 1.
         */
         private void addToDisplay(string stringToAdd, TextView display) {
+            // positive number
+            if (display.Text.Contains("-") == false) {
+                switch (stringToAdd) {
+                    case "."://decimal
+                        if (display.Text.Contains(".") == false) {
+                            display.Text += stringToAdd;
+                        }
 
-            if (display.Text == "0") {
-                display.Text = stringToAdd;
+                        break;
+                    default: //number
+                        if (display.Text == "0") {
+                            display.Text = stringToAdd;
+                        }
+                        else {
+                            display.Text += stringToAdd;
+                        }
+                        break;
+                }
             }
+            //negative number
             else {
-                display.Text += stringToAdd;
+                switch (stringToAdd) {
+                    case "."://decimal
+                        if (display.Text.Contains(".") == false) {
+                            display.Text += stringToAdd;
+                        }
+
+                        break;
+                    default: //number
+                        if (display.Text == "-0") {
+                            display.Text = stringToAdd;
+                        }
+                        else {
+                            display.Text += stringToAdd;
+                        }
+                        break;
+                }
             }
         }
+        
     }
 
 }
