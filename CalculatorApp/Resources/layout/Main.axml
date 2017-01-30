@@ -9,7 +9,8 @@
 <!--Calculator Text Row-->
     <TextView      
         android:id="@+id/textDisplay"
-        android:text="1234567"
+        android:editable="false"
+        android:text="0"
         android:textSize="50dip"
         android:layout_row="0"
         android:layout_column="0"
