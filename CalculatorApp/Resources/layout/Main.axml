@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:layout_gravity="center">
 <!--Calculator Text Row-->
-    <TextView
+    <TextView      
+        android:id="@+id/textDisplay"
         android:text="1234567"
         android:textSize="50dip"
         android:layout_row="0"
@@ -22,7 +23,7 @@
     DEL   SqrRoot X2  XY
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnDelete"
         android:text="del"
         android:layout_row="1"
         android:layout_column="0"
@@ -30,7 +31,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnRoot"
         android:text="√"
         android:layout_row="1"
         android:layout_column="1"
@@ -38,7 +39,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnSquared"
         android:text="x2"
         android:layout_row="1"
         android:layout_column="3"
@@ -46,7 +47,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnPower"
         android:text="xY"
         android:layout_row="1"
         android:layout_column="2"
@@ -57,7 +58,7 @@
   AC  +/-   %   /
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnClear"
         android:text="AC"
         android:layout_row="2"
         android:layout_column="0"
@@ -65,7 +66,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnPlusMinus"
         android:text="+/-"
         android:layout_row="2"
         android:layout_column="1"
@@ -73,7 +74,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnPercent"
         android:text="%"
         android:layout_row="2"
         android:layout_column="2"
@@ -81,7 +82,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnDivide"
         android:text="/"
         android:layout_row="2"
         android:layout_column="3"
@@ -92,7 +93,7 @@
   7   8   9 X
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn7"
         android:text="7"
         android:layout_row="3"
         android:layout_column="0"
@@ -100,7 +101,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn8"
         android:text="8"
         android:layout_row="3"
         android:layout_column="1"
@@ -108,7 +109,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn9"
         android:text="9"
         android:layout_row="3"
         android:layout_column="2"
@@ -116,7 +117,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnMultiply"
         android:text="X"
         android:layout_row="3"
         android:layout_column="3"
@@ -127,7 +128,7 @@
   4   5  6 -
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn4"
         android:text="4"
         android:layout_row="4"
         android:layout_column="0"
@@ -135,7 +136,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn5"
         android:text="5"
         android:layout_row="4"
         android:layout_column="1"
@@ -143,7 +144,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn6"
         android:text="6"
         android:layout_row="4"
         android:layout_column="2"
@@ -151,7 +152,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnSubtract"
         android:text="-"
         android:layout_row="4"
         android:layout_column="3"
@@ -162,7 +163,7 @@
   1   2   3 +
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn1"
         android:text="1"
         android:layout_row="5"
         android:layout_column="0"
@@ -170,7 +171,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn2"
         android:text="2"
         android:layout_row="5"
         android:layout_column="1"
@@ -178,7 +179,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn3"
         android:text="3"
         android:layout_row="5"
         android:layout_column="2"
@@ -186,7 +187,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnAdd"
         android:text="+"
         android:layout_row="5"
         android:layout_column="3"
@@ -197,7 +198,7 @@
   0      . =
   -->
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btn0"
         android:text="0"
         android:layout_row="6"
         android:layout_column="0"
@@ -207,7 +208,7 @@
         android:paddingTop="20dp"
         android:layout_columnWeight="1" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnDecimal"
         android:text="."
         android:layout_row="6"
         android:layout_column="2"
@@ -215,7 +216,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/btnEquals"
         android:text="="
         android:layout_row="6"
         android:layout_column="3"
