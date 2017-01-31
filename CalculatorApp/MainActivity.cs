@@ -2,15 +2,18 @@
 using Android.Widget;
 using Android.OS;
 using Android.Views;
+using System;
 
 namespace CalculatorApp {
     [Activity(Label = "CalculatorApp", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity {
 
+        private enum MATH_OPERATION { ADD, SUBTRACT, DIVIDE, MULTIPLY };
 
-        decimal firstNumber = 0;
-        decimal secondNumber = 0;
-        decimal resultNumber = 0;
+        MATH_OPERATION? mathOperation = null;
+
+        decimal? firstNumber = null;
+        decimal? secondNumber = null;
 
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
@@ -102,6 +105,22 @@ namespace CalculatorApp {
                 addToCurrentDisplayedValue(textDisplay, "0");
             };
 
+            /* Add Button */
+            btnAdd.Click += delegate {
+                mathOperation = MATH_OPERATION.ADD;
+                secondNumber = null;
+                saveNumberToMemory(textDisplay);
+                clearDisplay(textDisplay);
+            };
+
+            /* Equals Button */
+            btnEquals.Click += delegate {
+                saveNumberToMemory(textDisplay);
+                if (firstNumber != null && secondNumber != null) {
+                    textDisplay.Text = calculateResult((decimal)firstNumber, (decimal)secondNumber,(MATH_OPERATION) mathOperation).ToString();
+                    firstNumber = decimal.Parse(textDisplay.Text);
+                }
+            };
 
 
             /* 
@@ -131,6 +150,8 @@ namespace CalculatorApp {
             /* Button Clear */
             btnClear.Click += delegate {
                 clearDisplay(textDisplay);
+                firstNumber = null;
+                secondNumber = null;
             };
 
 
@@ -145,10 +166,27 @@ namespace CalculatorApp {
             };
         }
 
-        private void saveNumberToMemory(TextView display) {
+        private void displayResult(decimal result, TextView textDisplay) {
+        }
+
+        private decimal calculateResult(decimal firstNumber, decimal secondNumber, MATH_OPERATION mathOperation) {
+            
+                switch (mathOperation) {
+                    case MATH_OPERATION.ADD:
+                        return (decimal)firstNumber + (decimal)secondNumber;
+                    default: return 0;
+                
+            }
 
         }
 
+        private void saveNumberToMemory(TextView display) {
+            if(firstNumber == null) {
+                firstNumber = decimal.Parse(display.Text);
+            }else if (secondNumber == null) {
+                secondNumber = decimal.Parse(display.Text);
+            }
+        }
         private void clearDisplay(TextView display) {
             display.Text = "0";
         }

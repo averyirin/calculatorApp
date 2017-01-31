@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center">
 <!--Calculator Text Row-->
-    <TextView      
+    <TextView     
         android:id="@+id/textDisplay"
         android:editable="false"
         android:text="0"
@@ -24,6 +24,7 @@
     DEL   SqrRoot X2  XY
   -->
     <Button
+        android:background="@android:color/holo_red_dark"
         android:id="@+id/btnDelete"
         android:text="del"
         android:layout_row="1"
