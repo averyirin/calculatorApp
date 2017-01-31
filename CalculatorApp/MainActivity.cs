@@ -14,7 +14,7 @@ namespace CalculatorApp {
 
         decimal? firstNumber = null;
         decimal? secondNumber = null;
-
+        decimal calcResult = 0;
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
@@ -108,13 +108,35 @@ namespace CalculatorApp {
             /* Add Button */
             btnAdd.Click += delegate {
                 mathOperation = MATH_OPERATION.ADD;
-                secondNumber = null;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
+            /* Subtract Button */
+            btnSubtract.Click += delegate {
+                mathOperation = MATH_OPERATION.SUBTRACT;
+                saveNumberToMemory(textDisplay);
+                clearDisplay(textDisplay);
+            };
+
+            /* Multiply Button */
+            btnMultiply.Click += delegate {
+                mathOperation = MATH_OPERATION.MULTIPLY;
+                saveNumberToMemory(textDisplay);
+                clearDisplay(textDisplay);
+            };
+
+            /* Divide Button */
+            btnDivide.Click += delegate {
+                mathOperation = MATH_OPERATION.DIVIDE;
+                saveNumberToMemory(textDisplay);
+                clearDisplay(textDisplay);
+            };
+
+
             /* Equals Button */
             btnEquals.Click += delegate {
+                secondNumber = null;
                 saveNumberToMemory(textDisplay);
                 if (firstNumber != null && secondNumber != null) {
                     textDisplay.Text = calculateResult((decimal)firstNumber, (decimal)secondNumber,(MATH_OPERATION) mathOperation).ToString();
@@ -170,11 +192,17 @@ namespace CalculatorApp {
         }
 
         private decimal calculateResult(decimal firstNumber, decimal secondNumber, MATH_OPERATION mathOperation) {
-            
+            Console.WriteLine(firstNumber + " "+mathOperation+" " + secondNumber);
                 switch (mathOperation) {
-                    case MATH_OPERATION.ADD:
-                        return (decimal)firstNumber + (decimal)secondNumber;
-                    default: return 0;
+                case MATH_OPERATION.ADD:
+                    return (decimal)firstNumber + (decimal)secondNumber;
+                case MATH_OPERATION.SUBTRACT:
+                    return (decimal)firstNumber - (decimal)secondNumber;
+                case MATH_OPERATION.MULTIPLY:
+                    return (decimal)firstNumber * (decimal)secondNumber;
+                case MATH_OPERATION.DIVIDE:
+                    return (decimal)firstNumber / (decimal)secondNumber;
+                default: return 0;
                 
             }
 
