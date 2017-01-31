@@ -8,13 +8,13 @@ namespace CalculatorApp {
     [Activity(Label = "CalculatorApp", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity {
 
-        private enum MATH_OPERATION { ADD, SUBTRACT, DIVIDE, MULTIPLY };
+        private enum MATH_OPERATION { ADD, SUBTRACT, DIVIDE, MULTIPLY, POWER,SQRT };
 
         MATH_OPERATION? mathOperation = null;
 
         decimal? firstNumber = null;
         decimal? secondNumber = null;
-        decimal calcResult = 0;
+
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
@@ -133,13 +133,45 @@ namespace CalculatorApp {
                 clearDisplay(textDisplay);
             };
 
+            /* Power Button */
+            btnPower.Click += delegate {
+                mathOperation = MATH_OPERATION.POWER;
+                saveNumberToMemory(textDisplay);
+                clearDisplay(textDisplay);
+            };
+
+            /* Percent Button */
+            btnPercent.Click += delegate {
+                string currentValue = getCurrentDisplayedValue(textDisplay.Text);
+
+                if (currentValue != "0") {
+                    textDisplay.Text = prettyOutput((decimal.Parse(currentValue) * 100).ToString());
+                }
+            };
+
+            /* Square Button */
+            btnSquared.Click += delegate {
+                string currentValue = getCurrentDisplayedValue(textDisplay.Text);
+
+                if (currentValue != "0") {
+                    textDisplay.Text = prettyOutput((decimal.Parse(currentValue) * decimal.Parse(currentValue)).ToString());
+                }
+            };
+
+            /* SqrRoot Button */
+            btnRoot.Click += delegate {
+                string currentValue = getCurrentDisplayedValue(textDisplay.Text);
+                if (currentValue != "0") {
+                    textDisplay.Text = prettyOutput(Math.Sqrt(double.Parse(currentValue)).ToString());
+                }
+            };
 
             /* Equals Button */
             btnEquals.Click += delegate {
                 secondNumber = null;
                 saveNumberToMemory(textDisplay);
                 if (firstNumber != null && secondNumber != null) {
-                    textDisplay.Text = calculateResult((decimal)firstNumber, (decimal)secondNumber,(MATH_OPERATION) mathOperation).ToString();
+                    textDisplay.Text = prettyOutput(calculateResult((decimal)firstNumber, (decimal)secondNumber,(MATH_OPERATION) mathOperation).ToString());
                     firstNumber = decimal.Parse(textDisplay.Text);
                 }
             };
@@ -161,10 +193,10 @@ namespace CalculatorApp {
                         removedText = "0";
                     }
                     if (textDisplay.Text.Contains("-")) {
-                        textDisplay.Text = "-" + removedText;
+                        textDisplay.Text = prettyOutput("-" + removedText);
                     }
                     else {
-                        textDisplay.Text = removedText;
+                        textDisplay.Text = prettyOutput(removedText);
                     }
                 }
             };
@@ -202,6 +234,10 @@ namespace CalculatorApp {
                     return (decimal)firstNumber * (decimal)secondNumber;
                 case MATH_OPERATION.DIVIDE:
                     return (decimal)firstNumber / (decimal)secondNumber;
+                case MATH_OPERATION.POWER:
+                    return (decimal) Math.Pow((double)firstNumber,(double)secondNumber);
+                case MATH_OPERATION.SQRT:
+                    return (decimal)Math.Sqrt((double)firstNumber);
                 default: return 0;
                 
             }
@@ -228,12 +264,26 @@ namespace CalculatorApp {
 
         private string getCurrentDisplayedValue(string currentDisplayVal) {
             if (currentDisplayVal.Contains("-")) {
-                return currentDisplayVal.Substring(1, currentDisplayVal.Length-1);
-            }else {
+                return currentDisplayVal.Substring(1, currentDisplayVal.Length - 1);
+            }
+            else {
                 return currentDisplayVal;
             }
         }
 
+        private string prettyOutput(string unfilterOutput) {
+            if (unfilterOutput.Length > 11) {
+                if (unfilterOutput.Contains("-")) {
+                    return unfilterOutput.Substring(0, 11);
+                }
+                else {
+                    return unfilterOutput.Substring(0, 10);
+                }
+            }else {
+                return unfilterOutput;
+            }
+
+        }
         private void addDecimalToDisplay(TextView display) {
             if (display.Text.Contains(".") == false) {
                 display.Text += ".";
