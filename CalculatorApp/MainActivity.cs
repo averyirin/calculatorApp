@@ -54,52 +54,52 @@ namespace CalculatorApp {
 
             /* Button 1 */
             btn1.Click += delegate {
-                addToDisplay("1",textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "1");
             };
 
             /* Button 2 */
             btn2.Click += delegate {
-                addToDisplay("2", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "2");
             };
 
             /* Button 3 */
             btn3.Click += delegate {
-                addToDisplay("3", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "3");
             };
 
             /* Button 4 */
             btn4.Click += delegate {
-                addToDisplay("4", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "4");
             };
 
             /* Button 5 */
             btn5.Click += delegate {
-                addToDisplay("5", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "5");
             };
 
             /* Button 6 */
             btn6.Click += delegate {
-                addToDisplay("6", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "6");
             };
 
             /* Button 7 */
             btn7.Click += delegate {
-                addToDisplay("7", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "7");
             };
 
             /* Button 8 */
             btn8.Click += delegate {
-                addToDisplay("8", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "8");
             };
 
             /* Button 9 */
             btn9.Click += delegate {
-                addToDisplay("9", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "9");
             };
 
             /* Button 0 */
             btn0.Click += delegate {
-                addToDisplay("0", textDisplay);
+                addToCurrentDisplayedValue(textDisplay, "0");
             };
 
 
@@ -113,15 +113,21 @@ namespace CalculatorApp {
              */
             /* Button Delete */
             btnDelete.Click += delegate {
-                if(textDisplay.Text != "0") {
-                    string removedText = textDisplay.Text.Substring(0, textDisplay.Text.Length - 1);
-                    if(removedText == "") {
+                string currentStringVal = getCurrentDisplayedValue(textDisplay.Text);
+                if (currentStringVal != "0") {
+                    string removedText = currentStringVal.Substring(0, currentStringVal.Length - 1);
+                    if (removedText == "") {
                         removedText = "0";
                     }
-                    textDisplay.Text = removedText;
+                    if (textDisplay.Text.Contains("-")) {
+                        textDisplay.Text = "-" + removedText;
+                    }
+                    else {
+                        textDisplay.Text = removedText;
+                    }
                 }
             };
-
+            
             /* Button Clear */
             btnClear.Click += delegate {
                 clearDisplay(textDisplay);
@@ -130,18 +136,77 @@ namespace CalculatorApp {
 
             /* Button Decimal */
             btnDecimal.Click += delegate {
-                addToDisplay(".",textDisplay);
+                addDecimalToDisplay(textDisplay); 
             };
 
             /* Button Plus/Minus */
-            btnDecimal.Click += delegate {
+            btnPlusMinus.Click += delegate {
                 toggleNegative(textDisplay);
             };
+        }
+
+        private void saveNumberToMemory(TextView display) {
+
         }
 
         private void clearDisplay(TextView display) {
             display.Text = "0";
         }
+
+        /*  
+            0 > 5
+            5 > 50
+            0 > 0.
+            1 > 1.
+        */
+
+        private string getCurrentDisplayedValue(string currentDisplayVal) {
+            if (currentDisplayVal.Contains("-")) {
+                return currentDisplayVal.Substring(1, currentDisplayVal.Length-1);
+            }else {
+                return currentDisplayVal;
+            }
+        }
+
+        private void addDecimalToDisplay(TextView display) {
+            if (display.Text.Contains(".") == false) {
+                display.Text += ".";
+            }
+        }
+        
+        private void updateValues(string displayNumber) {
+            if(firstNumber != 0) {
+                firstNumber = decimal.Parse(displayNumber);
+
+            }else {
+                secondNumber = decimal.Parse(displayNumber);
+            }
+        }
+
+        private void addToCurrentDisplayedValue(TextView display, string val) {
+            // 0 > 1, -0 > -1, 5 > 15, -5 > -15
+            if (display.Text.Contains("-")) {
+                //-0 > -1
+                 if (getCurrentDisplayedValue(display.Text) == "0") {
+                    display.Text = "-"+val;
+                }
+                //-1 > -15
+                else {
+                    display.Text += val;
+                }
+            }
+            else {
+                //0 > 1
+                if (getCurrentDisplayedValue(display.Text) == "0") {
+                    display.Text = val;
+                }
+                //1 > 15
+                else {
+                    display.Text += val;
+                }
+            }
+        }
+        
 
         private void toggleNegative(TextView display) {
             //toggle positive and negative
@@ -149,56 +214,10 @@ namespace CalculatorApp {
                 display.Text = "-" + display.Text;
             }
             else {
-                display.Text = display.Text.Substring(1, display.Text.Length);
+                display.Text = display.Text.Substring(1, display.Text.Length-1);
             }
         }
-        /*  
-            0 > 5
-            5 > 50
-            0 > 0.
-            1 > 1.
-        */
-        private void addToDisplay(string stringToAdd, TextView display) {
-            // positive number
-            if (display.Text.Contains("-") == false) {
-                switch (stringToAdd) {
-                    case "."://decimal
-                        if (display.Text.Contains(".") == false) {
-                            display.Text += stringToAdd;
-                        }
 
-                        break;
-                    default: //number
-                        if (display.Text == "0") {
-                            display.Text = stringToAdd;
-                        }
-                        else {
-                            display.Text += stringToAdd;
-                        }
-                        break;
-                }
-            }
-            //negative number
-            else {
-                switch (stringToAdd) {
-                    case "."://decimal
-                        if (display.Text.Contains(".") == false) {
-                            display.Text += stringToAdd;
-                        }
-
-                        break;
-                    default: //number
-                        if (display.Text == "-0") {
-                            display.Text = stringToAdd;
-                        }
-                        else {
-                            display.Text += stringToAdd;
-                        }
-                        break;
-                }
-            }
-        }
-        
     }
 
 }
