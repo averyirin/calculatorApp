@@ -24,6 +24,8 @@
     DEL   SqrRoot X2  XY
   -->
     <Button
+      
+        android:background="@drawable/function_button"
         android:id="@+id/btnDelete"
         android:text="del"
         android:layout_row="1"
@@ -32,6 +34,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/scientific_button"
         android:id="@+id/btnRoot"
         android:text="√"
         android:layout_row="1"
@@ -40,25 +43,29 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+      
+        android:background="@drawable/scientific_button"
         android:id="@+id/btnSquared"
-        android:text="x2"
+        android:text="x\u00B2"
         android:layout_row="1"
         android:layout_column="3"
         android:textSize="20dip"
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/scientific_button"
         android:id="@+id/btnPower"
-        android:text="xY"
+        android:text="x\u207F"
         android:layout_row="1"
         android:layout_column="2"
         android:textSize="20dip"
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
 <!--Second Functions Row
-  AC  +/-   %   /
+  AC  +/-   %   	÷
   -->
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnClear"
         android:text="AC"
         android:layout_row="2"
@@ -67,6 +74,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnPlusMinus"
         android:text="+/-"
         android:layout_row="2"
@@ -75,6 +83,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnPercent"
         android:text="%"
         android:layout_row="2"
@@ -83,8 +92,9 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnDivide"
-        android:text="/"
+        android:text="\u00F7"
         android:layout_row="2"
         android:layout_column="3"
         android:textSize="20dip"
@@ -95,6 +105,7 @@
   -->
     <Button
       
+        android:background="@drawable/number_button"
         android:id="@+id/btn7"
         android:text="7"
         android:layout_row="3"
@@ -103,6 +114,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn8"
         android:text="8"
         android:layout_row="3"
@@ -111,6 +123,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn9"
         android:text="9"
         android:layout_row="3"
@@ -119,8 +132,9 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnMultiply"
-        android:text="X"
+        android:text="\u00D7"
         android:layout_row="3"
         android:layout_column="3"
         android:textSize="20dip"
@@ -130,6 +144,7 @@
   4   5  6 -
   -->
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn4"
         android:text="4"
         android:layout_row="4"
@@ -138,6 +153,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn5"
         android:text="5"
         android:layout_row="4"
@@ -146,6 +162,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn6"
         android:text="6"
         android:layout_row="4"
@@ -154,6 +171,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnSubtract"
         android:text="-"
         android:layout_row="4"
@@ -165,6 +183,7 @@
   1   2   3 +
   -->
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn1"
         android:text="1"
         android:layout_row="5"
@@ -173,6 +192,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn2"
         android:text="2"
         android:layout_row="5"
@@ -181,6 +201,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn3"
         android:text="3"
         android:layout_row="5"
@@ -189,6 +210,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnAdd"
         android:text="+"
         android:layout_row="5"
@@ -200,6 +222,7 @@
   0      . =
   -->
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btn0"
         android:text="0"
         android:layout_row="6"
@@ -210,6 +233,7 @@
         android:paddingTop="20dp"
         android:layout_columnWeight="1" />
     <Button
+        android:background="@drawable/number_button"
         android:id="@+id/btnDecimal"
         android:text="."
         android:layout_row="6"
@@ -218,6 +242,7 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
     <Button
+        android:background="@drawable/function_button"
         android:id="@+id/btnEquals"
         android:text="="
         android:layout_row="6"

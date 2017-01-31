@@ -170,9 +170,12 @@ namespace CalculatorApp {
             btnEquals.Click += delegate {
                 secondNumber = null;
                 saveNumberToMemory(textDisplay);
+                //check valid values in first and second number
                 if (firstNumber != null && secondNumber != null) {
-                    textDisplay.Text = prettyOutput(calculateResult((decimal)firstNumber, (decimal)secondNumber,(MATH_OPERATION) mathOperation).ToString());
-                    firstNumber = decimal.Parse(textDisplay.Text);
+                    //Check for divide by 0 error
+                        textDisplay.Text = prettyOutput(calculateResult((decimal)firstNumber, (decimal)secondNumber, (MATH_OPERATION)mathOperation).ToString());
+                        firstNumber = decimal.Parse(textDisplay.Text);
+                    
                 }
             };
 
