@@ -1,13 +1,27 @@
-﻿using Android.App;
+﻿
+/*
+MainActivity.cs
+Irin Avery
+1/31/2017
+A calculator android application built with Xamarin.
+This file handles the backend functionality when you press a button
+on the calculator.
+ */
+using Android.App;
 using Android.Widget;
 using Android.OS;
 using Android.Views;
 using System;
-
 namespace CalculatorApp {
     [Activity(Label = "CalculatorApp", MainLauncher = true, Icon = "@drawable/icon")]
+
+    /*
+     * MainActivity class, since our application resides on one screen
+     * All of the button press events will go into this activity.
+     */
     public class MainActivity : Activity {
 
+        //math operations
         private enum MATH_OPERATION { ADD, SUBTRACT, DIVIDE, MULTIPLY, POWER,SQRT };
 
         MATH_OPERATION? mathOperation = null;
@@ -15,6 +29,7 @@ namespace CalculatorApp {
         decimal? firstNumber = null;
         decimal? secondNumber = null;
 
+        //creates the UI for us
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
@@ -55,92 +70,119 @@ namespace CalculatorApp {
 
 
 
-            /* Button 1 */
+            /* Button 1
+             * Adds 1 to the display */
             btn1.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "1");
             };
 
-            /* Button 2 */
+            /* Button 2 
+             *Adds 2 to the display
+             */
             btn2.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "2");
             };
 
-            /* Button 3 */
+            /* Button 3 
+             *Adds 3 to the display
+             */
             btn3.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "3");
             };
 
-            /* Button 4 */
+            /* Button 4 
+             *Adds 4 to the display
+             */
             btn4.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "4");
             };
 
-            /* Button 5 */
+            /*
+             * Button 5 
+             *Adds 5 to the display
+             */
             btn5.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "5");
             };
 
-            /* Button 6 */
+            /* Button 6
+             * Adds 6 to the display */
             btn6.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "6");
             };
 
-            /* Button 7 */
+            /* Button 7
+             * Adds 7 to the display */
             btn7.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "7");
             };
 
-            /* Button 8 */
+            /* Button 8 
+             * Adds 8 to the display */
             btn8.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "8");
             };
 
-            /* Button 9 */
+            /* Button 9 
+             * Adds 9 to the display*/
             btn9.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "9");
             };
 
-            /* Button 0 */
+            /* Button 0 
+             * Adds 0 to the display*/
             btn0.Click += delegate {
                 addToCurrentDisplayedValue(textDisplay, "0");
             };
 
-            /* Add Button */
+            /* Add Button 
+             * Event for when the add button is clicked, saves the number into
+             memory then clears the screen for the next number to be entered*/
             btnAdd.Click += delegate {
                 mathOperation = MATH_OPERATION.ADD;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
-            /* Subtract Button */
+            /* Subtract Button 
+             * Event for when the subctract button is clicked, saves the number into
+             memory then clears the screen for the next number to be entered*/
             btnSubtract.Click += delegate {
                 mathOperation = MATH_OPERATION.SUBTRACT;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
-            /* Multiply Button */
+            /* Multiply Button 
+             * Event for when the multiply button is clicked, saves the number into
+             memory then clears the screen for the next number to be entered*/
             btnMultiply.Click += delegate {
                 mathOperation = MATH_OPERATION.MULTIPLY;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
-            /* Divide Button */
+            /* Divide Button 
+             * Event for when the divide button is clicked, saves the number into
+             memory then clears the screen for the next number to be entered*/
             btnDivide.Click += delegate {
                 mathOperation = MATH_OPERATION.DIVIDE;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
-            /* Power Button */
+            /* Power Button 
+             * Event for when the power to the N button is clicked, saves the number into
+             memory then clears the screen for the next number to be entered*/
             btnPower.Click += delegate {
                 mathOperation = MATH_OPERATION.POWER;
                 saveNumberToMemory(textDisplay);
                 clearDisplay(textDisplay);
             };
 
-            /* Percent Button */
+            /* Percent Button 
+             Prints the current value as a percent (*100)
+             */
             btnPercent.Click += delegate {
                 string currentValue = getCurrentDisplayedValue(textDisplay.Text);
 
@@ -149,7 +191,8 @@ namespace CalculatorApp {
                 }
             };
 
-            /* Square Button */
+            /* Square Button
+             Prints the current value squared*/
             btnSquared.Click += delegate {
                 string currentValue = getCurrentDisplayedValue(textDisplay.Text);
 
@@ -158,7 +201,8 @@ namespace CalculatorApp {
                 }
             };
 
-            /* SqrRoot Button */
+            /* SqrRoot Button 
+             Prints the square root of the current value*/
             btnRoot.Click += delegate {
                 string currentValue = getCurrentDisplayedValue(textDisplay.Text);
                 if (currentValue != "0") {
@@ -166,7 +210,10 @@ namespace CalculatorApp {
                 }
             };
 
-            /* Equals Button */
+            /* Equals Button
+             * Does our calculation in calculate result
+             * by passing our first number, second number and the math operation
+             *  */
             btnEquals.Click += delegate {
                 secondNumber = null;
                 saveNumberToMemory(textDisplay);
@@ -187,7 +234,8 @@ namespace CalculatorApp {
              0. > 0
              0
              */
-            /* Button Delete */
+            /* Button Delete 
+             Deletes digits from the right, works with negatives and positives*/
             btnDelete.Click += delegate {
                 string currentStringVal = getCurrentDisplayedValue(textDisplay.Text);
                 if (currentStringVal != "0") {
@@ -204,7 +252,8 @@ namespace CalculatorApp {
                 }
             };
             
-            /* Button Clear */
+            /* Button Clear 
+             * Clears the display and memory for fresh numbers to be imported*/
             btnClear.Click += delegate {
                 clearDisplay(textDisplay);
                 firstNumber = null;
@@ -212,22 +261,30 @@ namespace CalculatorApp {
             };
 
 
-            /* Button Decimal */
+            /* Button Decimal
+             * Adds our dot to the screen 13.37  */
             btnDecimal.Click += delegate {
                 addDecimalToDisplay(textDisplay); 
             };
 
-            /* Button Plus/Minus */
+            /* Button Plus/Minus 
+             *Toggles the plus or minus on the display
+             */
             btnPlusMinus.Click += delegate {
                 toggleNegative(textDisplay);
             };
         }
-
-        private void displayResult(decimal result, TextView textDisplay) {
-        }
-
+        
+        
+        /// <summary>
+        /// Calculate Result
+        /// </summary>
+        /// <param name="firstNumber">The first number used for calculating</param>
+        /// <param name="secondNumber">Second number</param>
+        /// <param name="mathOperation">Our math operation determines what math to do</param>
+        /// <returns>Decimal</returns>
         private decimal calculateResult(decimal firstNumber, decimal secondNumber, MATH_OPERATION mathOperation) {
-            Console.WriteLine(firstNumber + " "+mathOperation+" " + secondNumber);
+            //Console.WriteLine(firstNumber + " "+mathOperation+" " + secondNumber);
                 switch (mathOperation) {
                 case MATH_OPERATION.ADD:
                     return (decimal)firstNumber + (decimal)secondNumber;
@@ -236,7 +293,9 @@ namespace CalculatorApp {
                 case MATH_OPERATION.MULTIPLY:
                     return (decimal)firstNumber * (decimal)secondNumber;
                 case MATH_OPERATION.DIVIDE:
-                    return (decimal)firstNumber / (decimal)secondNumber;
+                    //Handles divide by 0, good try.
+                    if (secondNumber.Equals(0) || secondNumber.Equals(-0)) return 0;
+                    else  return (decimal)firstNumber / (decimal)secondNumber;
                 case MATH_OPERATION.POWER:
                     return (decimal) Math.Pow((double)firstNumber,(double)secondNumber);
                 case MATH_OPERATION.SQRT:
@@ -247,6 +306,7 @@ namespace CalculatorApp {
 
         }
 
+        //saves number to memory depending on which value is null
         private void saveNumberToMemory(TextView display) {
             if(firstNumber == null) {
                 firstNumber = decimal.Parse(display.Text);
@@ -254,6 +314,7 @@ namespace CalculatorApp {
                 secondNumber = decimal.Parse(display.Text);
             }
         }
+        //clears the display with a 0 showing
         private void clearDisplay(TextView display) {
             display.Text = "0";
         }
@@ -264,7 +325,9 @@ namespace CalculatorApp {
             0 > 0.
             1 > 1.
         */
-
+        //gets the string value of what the number is.
+        //-14.23 > 14.23
+        //Used for formating and validation if the user has a 0.
         private string getCurrentDisplayedValue(string currentDisplayVal) {
             if (currentDisplayVal.Contains("-")) {
                 return currentDisplayVal.Substring(1, currentDisplayVal.Length - 1);
@@ -273,7 +336,8 @@ namespace CalculatorApp {
                 return currentDisplayVal;
             }
         }
-
+        //Cuts the number to a maximum of 12 characters long
+        //so the output does not overflow in the application.
         private string prettyOutput(string unfilterOutput) {
             if (unfilterOutput.Length > 11) {
                 if (unfilterOutput.Contains("-")) {
@@ -287,12 +351,16 @@ namespace CalculatorApp {
             }
 
         }
+
+        //puts our friendly decimal onto the screen if
+        //the display does not already have one
         private void addDecimalToDisplay(TextView display) {
             if (display.Text.Contains(".") == false) {
                 display.Text += ".";
             }
         }
-        
+        //updates the values in the first and second number
+        //converts the string display into a decimal number for math
         private void updateValues(string displayNumber) {
             if(firstNumber != 0) {
                 firstNumber = decimal.Parse(displayNumber);
@@ -302,6 +370,9 @@ namespace CalculatorApp {
             }
         }
 
+        /*
+         * Adds the character to the display
+         * */
         private void addToCurrentDisplayedValue(TextView display, string val) {
             // 0 > 1, -0 > -1, 5 > 15, -5 > -15
             if (display.Text.Contains("-")) {
@@ -326,7 +397,9 @@ namespace CalculatorApp {
             }
         }
         
-
+        /*
+         * Toggles the minus sign on and off
+         */
         private void toggleNegative(TextView display) {
             //toggle positive and negative
             if (display.Text.Contains("-") == false) {

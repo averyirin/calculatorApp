@@ -1,4 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+function_button.xml
+Irin Avery
+1/31/2017
+A calculator android application built with Xamarin.
+This file handles the beautiful scientific button styling with a light blue colour
+-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_pressed="true" >
     <shape>

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Main.axml
+Irin Avery
+1/31/2017
+A calculator android application built with Xamarin.
+This file handles the beautiful front end buttons and display screen
+with a grid layout.
+-->
+<!-- Our grid layout 7 by 4-->
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
